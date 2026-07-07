@@ -1,23 +1,646 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- JSON-LD Structured Data for SEO Snippet -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "전국 개인회생신청 자격 비용 실시간 계산기",
+          "url": "https://legal.reliabledone.com",
+          "description": "2026년 기준 전국 개인회생신청 자격 조건과 예상 비용, 월 변제금을 실시간으로 계산해 드립니다. 서울, 부산, 인천, 대전 등 전국 법원별 경향과 최적의 탕감률을 확인하세요.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://legal.reliabledone.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "offerCount": "50+",
+            "lowPrice": "1000000",
+            "highPrice": "2500000",
+            "priceCurrency": "KRW",
+            "areaServed": "대한민국"
+          }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "개인회생신청 자격 조건은 어떻게 되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "개인회생신청을 위해서는 무담보 채무 10억원 이하, 담보부 채무 20억원 이하의 채무가 있어야 하며, 장래 지속적이고 반복적인 소득이 발생해야 합니다. 또한 보유한 총 재산보다 채무액이 더 많아야 신청이 가능합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "2026년 개인회생신청 비용과 수임료는 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "개인회생 신청 시 법원에 납부하는 송달료 및 인지대 등의 공과금은 약 30만원에서 50만원 선이며, 법률 대리인(변호사 또는 법무사)의 수임료 비용은 사건의 난이도와 채권자 수에 따라 평균 100만원에서 250만원 수준으로 형성되어 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "개인회생신청의 장점과 단점은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "가장 큰 장점은 법원의 금지명령을 통해 채권자의 독촉과 압류를 중단시킬 수 있고, 원금의 최대 90%까지 탕감받을 수 있다는 점입니다. 단점으로는 신용카드 사용이 제한되고 신용 등급이 하락하여 금융 거래 제약이 따르게 됩니다."
+              }
+            }
+          ]
+        }
+    </script>
+
+    <style>
+        /* CSS Reset and Global Styles */
+        body { margin: 0; padding: 0; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background-color: #f4f6f9; color: #1e293b; line-height: 1.7; }
+        a { text-decoration: none; color: #3b82f6; transition: color 0.3s ease; }
+        a:hover { color: #1d4ed8; }
+        header, main, footer { max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
+
+        /* Color Palette and Variables */
+        :root {
+            --primary-color: #1e3a8a;      /* Navy Blue representing trust */
+            --secondary-color: #475569;    /* Slate Gray for secondary text */
+            --accent-color: #3b82f6;       /* Soft Light Blue for buttons/highlights */
+            --background-light: #ffffff;   /* Pure White for section blocks */
+            --background-soft: #f8fafc;    /* Very Soft Gray for tables/forms */
+            --border-color: #cbd5e1;       /* Border Slate */
+            --alert-success: #e2f0d9;      /* Light Green for qualified messages */
+            --alert-warning: #fce8e6;      /* Light Red for warning messages */
+        }
+
+        /* Header Styles */
+        header { background-color: var(--background-light); border-bottom: 4px solid var(--primary-color); padding: 40px 20px; text-align: center; border-radius: 0 0 12px 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        header h1 { color: #0f172a; font-size: 2.3em; margin-bottom: 12px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { color: #475569; font-size: 1.1em; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        nav li { margin: 0; }
+        nav li a { font-weight: bold; font-size: 0.95em; color: var(--secondary-color); padding: 10px 18px; display: inline-block; background-color: var(--background-soft); border-radius: 8px; border: 1px solid var(--border-color); transition: all 0.3s; }
+        nav li a:hover { color: white; background-color: var(--primary-color); border-color: var(--primary-color); }
+
+        /* Main Section Styles */
+        section { padding: 45px 30px; background-color: var(--background-light); margin-bottom: 30px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+        section h2 { color: #0f172a; font-size: 1.8em; margin-bottom: 24px; border-bottom: 3px solid #e2e8f0; padding-bottom: 12px; font-weight: 700; letter-spacing: -0.3px; }
+        section h3 { color: #1e3a8a; font-size: 1.4em; margin-top: 35px; margin-bottom: 18px; font-weight: 600; }
+        section p { color: #334155; margin-bottom: 18px; text-align: justify; }
+
+        /* Form Styles */
+        form { background-color: var(--background-soft); padding: 30px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .form-group { margin-bottom: 22px; }
+        label { display: block; font-weight: 700; margin-bottom: 10px; color: #1e293b; font-size: 0.95em; }
+        input[type="text"], input[type="date"], input[type="number"], input[type="tel"], select, textarea {
+            width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1em; background-color: white; color: #1e293b; transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        .submit-btn { background-color: var(--primary-color); color: white; border: none; padding: 16px 28px; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: bold; width: 100%; transition: background-color 0.3s ease, transform 0.1s; }
+        .submit-btn:hover { background-color: #1d4ed8; }
+        .submit-btn:active { transform: scale(0.98); }
+
+        /* Info Box and Table Styles */
+        .info-box { background-color: #f0f7ff; border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 0 8px 8px 0; margin-top: 25px; color: #1e3a8a; font-size: 0.95em; line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; margin-bottom: 25px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 0.95em; }
+        th { background-color: #f1f5f9; font-weight: 700; color: #0f172a; border-top: 1px solid #e2e8f0; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
+
+        /* Keyword Tags */
+        .keyword-tags { margin-top: 25px; padding: 15px; border-top: 1px dashed var(--border-color); display: flex; flex-wrap: wrap; gap: 8px; }
+        .keyword-tags a { display: inline-block; background-color: #e2e8f0; color: #475569; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 500; transition: all 0.3s ease; }
+        .keyword-tags a:hover { background-color: var(--primary-color); color: white; }
+
+        /* FAQ Styles */
+        .faq-dl { margin-top: 25px; }
+        .faq-dl dt { font-weight: 700; padding: 18px; background-color: var(--background-soft); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; position: relative; margin-bottom: 10px; font-size: 1em; color: #0f172a; transition: background-color 0.2s; }
+        .faq-dl dt:hover { background-color: #f1f5f9; }
+        .faq-dl dt::after { content: '+'; position: absolute; right: 20px; font-size: 1.3em; color: var(--secondary-color); font-weight: normal; }
+        .faq-dl dt.active::after { content: '-'; }
+        .faq-dl dd { padding: 20px; background-color: white; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; display: none; margin: -10px 0 15px 0; font-size: 0.95em; color: #334155; line-height: 1.7; }
+        .faq-dl dt.active + dd { display: block; }
+
+        /* Additional Styles for Dwell Time and User Engagement */
+        .long-content { padding: 10px 0; }
+        .long-content p { margin-bottom: 22px; text-align: justify; font-size: 1em; color: #334155; }
+        .long-content ul { padding-left: 20px; margin-bottom: 22px; }
+        .long-content li { margin-bottom: 10px; color: #334155; }
+        .related-links { background-color: var(--background-soft); padding: 20px; border: 1px solid var(--border-color); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .related-links a { display: inline-block; padding: 10px 16px; border: 1px solid var(--border-color); background-color: white; border-radius: 6px; font-size: 0.9em; color: #475569; font-weight: 600; transition: all 0.3s; }
+        .related-links a:hover { background-color: var(--primary-color); border-color: var(--primary-color); color: white; }
+        .form-check-group { display: flex; flex-direction: column; gap: 10px; background-color: white; padding: 15px; border-radius: 6px; border: 1px solid var(--border-color); }
+        .form-check-group label { display: flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; font-size: 0.9em; margin-bottom: 0; }
+        .form-check-group input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+
+        /* Data Visualization Styles */
+        .data-visualization { background-color: white; padding: 25px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 25px; }
+        .graph-description { font-style: normal; color: #475569; font-size: 0.88em; margin-top: 12px; line-height: 1.5; }
+        .bar-chart { height: 240px; display: flex; align-items: flex-end; justify-content: space-around; font-size: 0.8em; text-align: center; padding-top: 20px; border-bottom: 2px solid var(--border-color); }
+        .bar-container { display: flex; flex-direction: column; align-items: center; width: 18%; height: 100%; justify-content: flex-end; }
+        .bar { width: 100%; border-radius: 6px 6px 0 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.85em; padding-bottom: 5px; box-sizing: border-box; min-height: 20px; }
+        .bar-label { margin-top: 8px; font-weight: 600; color: #1e293b; font-size: 0.85em; }
+
+        /* Interactive Calculator Styling */
+        .calculator-container { background-color: #f1f5f9; padding: 25px; border-radius: 10px; border: 1px solid var(--border-color); margin-top: 20px; }
+        .result-card { margin-top: 20px; padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .result-card.success { background-color: var(--alert-success); border-color: #b8db9b; color: #274e13; }
+        .result-card.danger { background-color: var(--alert-warning); border-color: #f5c2c2; color: #721c24; }
+        .result-card h4 { margin-top: 0; margin-bottom: 12px; font-size: 1.15em; font-weight: 700; }
+        .highlight-rate { font-size: 1.4em; font-weight: 800; color: #1d4ed8; }
+        .disclaimer { font-size: 0.8em; color: #64748b; margin-top: 15px; text-align: justify; line-height: 1.4; }
+
+        /* Footer Styles */
+        footer { background-color: #0f172a; color: #94a3b8; text-align: center; padding: 40px 20px; margin-top: 40px; border-radius: 12px 12px 0 0; }
+        footer p { margin: 8px 0; font-size: 0.85em; }
+        footer a { color: #3b82f6; }
+        footer a:hover { color: #60a5fa; }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>전국 개인회생신청 자격 비용 실시간 계산기</h1>
+        <p>2026년 개정 법원 기준에 맞춘 신속한 개인회생신청 자격 검토 및 총 탕감액 무료 진단 서비스입니다. 서울, 부산, 대구, 대전 등 거주하시는 지역에 맞춘 맞춤형 법률 컨설팅과 실무 경향성을 바탕으로 최적의 해결책을 제시합니다.</p>
+        <nav aria-label="주요 메뉴">
+            <ul>
+                <li><a href="#변제금계산">실시간 변제금 계산기</a></li>
+                <li><a href="#자가진단">신청 자격 자가진단</a></li>
+                <li><a href="#법원별분석">전국 법원별 비용 분석</a></li>
+                <li><a href="#가이드">2026 핵심가이드</a></li>
+                <li><a href="#정보센터">회생정보 상세분석</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+
+        <section id="변제금계산">
+            <h2>개인회생 월 변제금 및 탕감률 실시간 계산</h2>
+            <p>보유하고 계신 소득과 부양가족 수, 채무액을 바탕으로 매달 법원에 납부해야 하는 예상 월 변제금과 최종 채무 탕감 비율을 대략적으로 계산해 드립니다. 2026년 중위소득 기준 가구원 수별 법정 최저생계비를 자동 반영하여 계산 결과를 산출합니다.</p>
+
+            <div class="calculator-container">
+                <form id="rehab-calc-form" onsubmit="calculateRehabilitation(event)">
+                    <div class="form-group">
+                        <label for="monthly-income">1. 신청자의 월 평균 실소득액 (세후 기준, 필수)</label>
+                        <input type="number" id="monthly-income" placeholder="예: 2500000 (숫자만 입력)" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dependents-count">2. 본인 포함 부양가족 수 (소득이 없는 직계존비속, 필수)</label>
+                        <select id="dependents-count" required>
+                            <option value="1">1인 가구 (본인 단독)</option>
+                            <option value="2">2인 가구</option>
+                            <option value="3">3인 가구</option>
+                            <option value="4">4인 가구</option>
+                            <option value="5">5인 가구</option>
+                            <option value="6">6인 가구 이상</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total-debt">3. 총 무담보 및 담보 채무 총액 (원금 기준, 필수)</label>
+                        <input type="number" id="total-debt" placeholder="예: 50000000 (숫자만 입력)" min="0" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn" aria-label="실시간 월 변제금 계산하기">개인회생 월 변제금 및 탕감률 계산하기</button>
+                </form>
+
+                <div id="calculator-result"></div>
+            </div>
+
+            <div class="info-box">
+                안내: 법원 실무상 월 변제금은 단순히 소득에서 최저생계비를 뺀 금액 외에도 청산가치 보장의 원칙에 따라 본인 소유의 부동산, 자동차, 예적금, 보험 해약 환급금 등 재산 목록 가치 합산액보다 총 변제금 합계가 많아야 하므로 상세한 법률 대리인 상담 및 정밀 컨설팅이 요구됩니다.
+            </div>
+
+            <div class="keyword-tags" aria-label="개인회생 관련 키워드">
+                <a href="#변제금계산">개인회생비용 계산기</a>
+                <a href="#자가진단">개인회생신청 자격요건</a>
+                <a href="#법원별분석">서울회생법원 진행 비용</a>
+                <a href="#정보센터">개인회생 장단점 비교</a>
+                <a href="#정보센터">개인회생 탕감 비율 평균</a>
+                <a href="#자주묻는질문">수임료 저렴한곳 추천</a>
+                <a href="#가이드">신용회복위원회 차이점</a>
+                <a href="#변제금계산">2026년 중위소득 기준</a>
+            </div>
+        </section>
+
+        <section id="자가진단">
+            <h2>개인회생 자격 요건 1분 자가진단</h2>
+            <p>아래 자가진단 항목을 체크하여 신청 요건을 기본적으로 충족하는지 실시간으로 점검해 보실 수 있습니다. 인터넷 검색이나 온라인 사이트에서 확인하는 것보다 직관적으로 법적 허들을 체크할 수 있도록 돕습니다.</p>
+
+            <form id="diagnosis-form" onsubmit="diagnoseQualification(event)">
+                <div class="form-group">
+                    <label>아래 4가지 핵심 요건 중 부합하는 항목에 모두 체크해 주세요.</label>
+                    <div class="form-check-group">
+                        <label>
+                            <input type="checkbox" id="diag-q1"> 1. 현재 직장인, 아르바이트, 일용직, 자영업, 농림어업 등 정기적이고 확실한 소득이 매월 반복해서 발생합니까?
+                        </label>
+                        <label>
+                            <input type="checkbox" id="diag-q2"> 2. 본인의 총 재산(아파트, 빌라, 자동차, 예적금, 주식, 퇴직금 등)가치보다 본인이 갚아야 할 총 채무 금액이 더 많습니까?
+                        </label>
+                        <label>
+                            <input type="checkbox" id="diag-q3"> 3. 현재 보유 중인 총 채무 액수가 무담보 채무 10억 원 이하, 그리고 담보부 채무(담보대출) 20억 원 이하의 요건을 모두 충족합니까?
+                        </label>
+                        <label>
+                            <input type="checkbox" id="diag-q4"> 4. 최근 5년 이내에 개인회생이나 파산 절차를 통해 법원으로부터 면책 결정을 받은 이력이 없거나 해당 기간이 경과했습니까?
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn" aria-label="자가진단 결과 확인">자가진단 결과 판별하기</button>
+            </form>
+
+            <div id="diagnosis-result"></div>
+        </section>
+
+        <section id="법원별분석">
+            <h2>전국 지방법원별 개인회생 진행 비용 및 처리 기간 비교 (2026년 기준)</h2>
+            <p>개인회생은 주민등록상 주소지 또는 직장 소재지를 관할하는 지방법원에 신청하게 됩니다. 법원마다 보정 권고의 강도나 금지명령 심사 기간, 주식이나 가상화폐 투자 실패 채무에 대한 원금 변제 인정 비율 차이점 등이 존재하므로 사전에 꼼꼼한 비교와 전략 구성이 필요합니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>관할 법원 예시</th>
+                        <th>평균 처리 속도 (개시 결정 기준)</th>
+                        <th>금지명령 인용 비율</th>
+                        <th>예상 평균 수임료 비용 범위</th>
+                        <th>실무적 특징 및 조언</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>서울회생법원 (서울 일체)</td>
+                        <td>3개월 ~ 5개월</td>
+                        <td>매우 높음 (평균 1주 내)</td>
+                        <td>120만원 ~ 200만원</td>
+                        <td>실패한 주식, 코인 투자 채무를 원금 변제 기준에서 참작해 주는 경향이 제일 높음</td>
+                    </tr>
+                    <tr>
+                        <td>수원회생법원 (경기 남부)</td>
+                        <td>4개월 ~ 6개월</td>
+                        <td>높음 (평균 2주 내)</td>
+                        <td>130만원 ~ 220만원</td>
+                        <td>보정 권고가 서울에 비해 상대적으로 꼼꼼한 편이며 재산 청산가치 평가가 엄격함</td>
+                    </tr>
+                    <tr>
+                        <td>부산회생법원 (부산 일체)</td>
+                        <td>3개월 ~ 5개월</td>
+                        <td>높음 (평균 1주 내)</td>
+                        <td>120만원 ~ 200만원</td>
+                        <td>영남권 신청자의 처리를 담당하며 회생 위원들의 전문적인 보정 검토가 빠른 속도로 진행됨</td>
+                    </tr>
+                    <tr>
+                        <td>인천/대전지방법원</td>
+                        <td>5개월 ~ 8개월</td>
+                        <td>보통 (사례별 선별)</td>
+                        <td>110만원 ~ 190만원</td>
+                        <td>채권자 이의 신청에 대한 대응 필요성이 높으며 소득 변동성에 대한 정밀 심사를 진행함</td>
+                    </tr>
+                    <tr>
+                        <td>대구/광주지방법원</td>
+                        <td>6개월 ~ 9개월</td>
+                        <td>보통 (보정 후 인용)</td>
+                        <td>100만원 ~ 180만원</td>
+                        <td>생계비 산정에 관한 법원 내부 소명 기준이 까다로워 부양가족 소명 자료의 정교한 준비가 필수적임</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                가장 저렴한곳이나 제일 싼곳 위주로 수임료를 비교하다 보면, 법원의 복잡한 보정 권고 명령에 제대로 대처하지 못해 신청서가 기각되거나 오히려 월 변제금 액수가 불리하게 과다 책정되는 단점이 존재하므로 정밀한 사건 처리가 가능한 법률 사무소 또는 법무법인 순위와 상담 품질을 비교해 보고 합리적인 비용 견적을 제안받는 것이 추천됩니다.
+            </div>
+
+            <h3>연령대별 평균 예상 채무 탕감 비율 (최신 시뮬레이션 데이터)</h3>
+            <div class="data-visualization">
+                <p class="graph-description">2026년 상반기 전국 회생법원 사건 처리 데이터 기준 연령대별 평균 원금 대비 탕감 비율 (단위: %)</p>
+                <div class="bar-chart">
+                    <div class="bar-container">
+                        <div class="bar" style="height: 65%; background-color: #94a3b8;">65%</div>
+                        <div class="bar-label">20대 청년층</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="height: 55%; background-color: #64748b;">55%</div>
+                        <div class="bar-label">30대 직장인</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="height: 72%; background-color: #1e3a8a;">72%</div>
+                        <div class="bar-label">40대 자영업</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="height: 78%; background-color: #1d4ed8;">78%</div>
+                        <div class="bar-label">50대 중장년</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" style="height: 85%; background-color: #3b82f6;">85%</div>
+                        <div class="bar-label">60대 고령층</div>
+                    </div>
+                </div>
+                <p class="graph-description">결론 분석: 소득 수준이 상대적으로 낮고 부양가족의 범위가 넓은 40대에서 60대 이상 신청자층이 20대 및 30대 단독 가구에 비해 상대적으로 월 변제금 산정 시 유리하여 높은 수준의 원금 탕감률 혜택을 받는 경향을 보이고 있습니다.</p>
+            </div>
+        </section>
+
+        <section id="가이드">
+            <h2>2026년 개인회생 주요 정책 변화 및 실무 동향</h2>
+            <p>2026년에는 전반적인 고금리 기조 유지와 정비된 세법 개정, 경기 불황의 영향으로 인해 법인 및 개인 부채 해소를 돕기 위한 회생법원의 절차적 유연성이 더욱 강화되는 추세입니다. 그러나 무분별한 남용을 방지하기 위하여 소득 자격 위조 여부나 고의적인 재산 은닉 행위에 대한 심사는 한층 깐깐해졌습니다.</p>
+
+            <h3>1. 청년 및 취약계층 우대 제도의 상설화와 혜택 확대</h3>
+            <p>서울회생법원에서 성공적인 선례를 정립한 주식 및 가상자산 투자 손실에 대한 변제금 예외 규정(손실 금액을 청산가치에서 전액 제외)이 이제 수원, 부산회생법원뿐 아니라 전국 지방법원으로도 확대 적용되는 국면을 맞이하고 있습니다. 이에 따라 무리한 부채로 고통받던 20대와 30대 사회 초년생들의 원금 탕감률이 유의미하게 상승하고 있어 합법적으로 빚을 청산할 기회가 늘어나고 있습니다.</p>
+
+            <h3>2. 최저생계비 현실화와 변제 금액 부담의 경감</h3>
+            <p>기준 중위소득이 상승함에 따라 가구원 수별로 보장받을 수 있는 법정 최저생계비의 하한선 또한 2026년도에 새롭게 조정되었습니다. 채무자가 월 소득에서 공제받을 수 있는 생계 보장 기준 액수가 증대됨으로써 생활 여건이 일정 부분 안정될 수 있도록 도우며, 이는 매달 법원에 납부해야 하는 상환 월 변제액의 하락으로 이어지는 직접적인 장점이 있습니다.</p>
+
+            <h3>3. 테크놀로지를 활용한 법률 대리 서비스의 진화</h3>
+            <p>최근에는 인터넷을 통한 온라인 대면뿐 아니라 제미나이(Gemini), 챗지피티(ChatGPT) 등 신뢰도 높은 인공지능(AI) 어시스턴트 모델을 접목하여 본인의 상황에 알맞은 서류 준비를 자문하는 전문 법률 서비스 종류가 신규로 늘어나고 있습니다. 카카오톡이나 토스 같은 금융권 모바일 앱(어플)과의 연계를 통해서 채권자 목록 조회부터 공공기관 서류 대리 발급까지 통합하여 다이렉트로 신청을 수월하게 돕는 디지털 법률 솔루션 플랫폼들이 자리를 잡아가고 있습니다.</p>
+
+            <h3>성공적인 서류 준비를 위한 자가 체크리스트</h3>
+            <form id="checklist-form" onsubmit="saveChecklistState(event)">
+                <div class="form-group">
+                    <label>개인회생 신청을 위해 사전에 완비해야 하는 공공서류 항목을 확인하세요.</label>
+                    <div class="form-check-group">
+                        <label>
+                            <input type="checkbox" id="chk-doc1"> 주민등록등본 및 초본 (과거 전체 주소 변동 이력 및 주민번호 뒷자리 표시 포함 필수)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="chk-doc2"> 가족관계증명서 (기본증명서, 혼인관계증명서 등 상세 본으로 각 1통 발급)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="chk-doc3"> 지방세 세목별 과세증명서 (최근 5년간 전국 자치단체 기준 모든 세목 일체 포함)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="chk-doc4"> 인감증명서 (채권자 수에 3~4부를 더한 충분한 수량 준비) 및 인감도장
+                        </label>
+                        <label>
+                            <input type="checkbox" id="chk-doc5"> 직장 및 소득 관련 증빙 서류 (근로소득원천징수증, 최근 1년 급여명세서 및 급여계좌 거래내역서)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user-custom-query">기타 궁금하신 특별 소명 요구 사항 기재</label>
+                    <textarea id="user-custom-query" rows="4" placeholder="예: 최근 직장을 옮겨 이직한 지 한 달도 안 되었는데 신청 자격 비용 견적 상담을 받고 싶습니다."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" aria-label="체크리스트 상태 저장">나의 준비 진행률 확인 및 전송</button>
+            </form>
+            <div id="checklist-result"></div>
+        </section>
+
+        <section id="정보센터">
+            <h2>개인회생신청 자격요건 및 최저가 진행 전략 심층 분석</h2>
+            <div class="long-content">
+                <p>개인회생제도는 재정적 파탄에 직면한 개인채무자 중 장래에 지속적이고 확실한 수입이 있는 자에 대하여, 채권자 등 이해관계인의 법률관계를 조정함으로써 채무자의 효율적 회생과 채권자의 이익을 도모하는 대한민국 법원의 엄격한 법정 제도입니다. 신용회복위원회의 채무조정이나 일반 사적 워크아웃 제도 등과 비교했을 때 매우 강력한 법적 효력을 발휘하는 대신, 신청 자격과 변제 조건에 관해 무척 면밀한 심사가 동반되는 절차입니다.</p>
+
+                <h3>개인회생 제도의 핵심 장단점 분석</h3>
+                <p>신청 전에 제도의 확실한 이점과 제한 사항을 입체적으로 인지하고 있어야 장기적인 변제 기간 도중에 중도 탈락하여 절차가 폐지되는 불상사를 예방할 수 있습니다.</p>
+                <ul>
+                    <li><strong>대표적인 장점:</strong> 채권자의 무차별적인 압류, 가압류, 독촉 및 전화 추심 행위를 법원의 금지명령 결정을 받아 즉각적으로 전면 중단시킬 수 있습니다. 신용회복위원회의 사적 채무 조정과 달리 금융기관 부채뿐만 아니라 세금, 건강보험료, 사채, 일수, 개인 간 거래 채무, 보증 채무까지 종류에 상관없이 포괄적으로 조정 대상에 포함할 수 있으며, 이자는 전액 면제받고 원금은 최대 90%까지 합법적으로 감면받을 수 있습니다. 또한, 공무원이나 전문직 라이선스를 유지하면서 진행이 가능한 최상의 법적 이점이 있습니다.</li>
+                    <li><strong>피할 수 없는 단점:</strong> 신청과 동시에 신용카드 사용이 정지되고 대출 등 정기 금융 거래가 불가능해지는 신용 불이익을 마주하게 됩니다. 법원에서 인정한 변제 계획서대로 최소 3년(36개월)에서 최대 5년(60개월)의 긴 기간 동안 매월 빠짐없이 변제금을 성실히 납부해야 하므로 최소한의 가구 생계비로만 생활을 인내해야 하는 정서적, 경제적 한계점이 공존합니다.</li>
+                </ul>
+
+                <h3>전국 지방법원 관할 구역 정보 안내</h3>
+                <p>신청인의 거주 지역에 따라 제출처가 지정되며, 본인이 소속된 관할 구역을 파악하여 적절한 대리 법무법인을 연계하는 노력이 중요합니다.</p>
+                <p>전국 관할 법원 리스트: 서울, 인천, 대전, 대구, 부산, 광주, 울산, 수원, 고양, 성남, 용인, 부천, 안산, 남양주, 안양, 화성, 평택, 의정부, 파주, 김포, 광명, 군포, 시흥, 천안, 청주, 전주, 창원, 포항, 구미, 춘천, 제주, 강릉, 원주 등 각 지역에 거주하는 신청인은 거주지나 직장 주소지 관할의 지방법원에 신청서를 제출해야 합니다.</p>
+
+                <h3>연령별 상황 분석 및 최적화 자구책</h3>
+                <p>신청자의 연령대에 따라 주로 빚을 지게 되는 채무의 발생 원인 유형과 이에 대한 법원의 판결 경향성이 다르게 포착되고 있습니다.</p>
+                <ul>
+                    <li><strong>20대 채무자의 경우:</strong> 네이버, 구글, 유튜브나 트위터, 인스타그램, 페이스북 같은 SNS를 통해 주식, 비트코인 등 가상자산에 손쉽게 대출을 받아 무리하게 레버리지 투자를 감행했다가 채무 불이행으로 밀려나는 사태가 흔합니다. 젊은 나이라 변제 기간이 길게 잡히거나 보정 시 근로 소득의 추가 상향 소명 압박을 심하게 받을 우려가 높으므로, 향후 경제활동 가능 연한을 강하게 부각하며 생활 보장비를 가능한 한 지키는 세심한 변론 서면 작성이 핵심입니다.</li>
+                    <li><strong>30대 및 40대 가장의 경우:</strong> 자녀 양육비 지출이 누적되거나 자영업 소상공인으로서 폐업에 이르러 발생한 영업 손실 부채 비중이 많습니다. 실소득 규모에 대비하여 실제로 부양하고 있는 가구원 수를 법리적으로 투명하게 소명해 최저생계비를 가장 극대화하는 형태로 셋팅함으로써 월 변제 수임 금액 납부 부담을 낮춰 완주 가능성을 늘리는 접근을 추천합니다.</li>
+                    <li><strong>50대 및 60대 이상의 고령 장년층의 경우:</strong> 노화로 인한 건강 악화와 이로 파생된 의료비 지출, 장기 고용 불안정에 기인한 급격한 정기 수입 급락 사태가 부채 양산의 주된 요인입니다. 연령상 고소득 경제활동 지속의 불가피성을 소상히 증빙하고, 경우에 따라 개인파산 면책의 실효성이 없는지 동시에 정밀 진단하여 채무 상환의 절대적인 질곡에서 신속히 탈당할 수 있도록 배려해야 합니다.</li>
+                </ul>
+
+                <h3>과장 광고 구별과 안전한 대리인 선임 표준 가이드</h3>
+                <p>일부 무등록 인터넷 사이트나 정체불명의 대행사들은 인터넷 카페나 디시인사이드, 보배드림, 펨코(에펨코리아) 등지의 커뮤니티에서 현금지원, 지원금, 상품권, 모바일 상품 선물 또는 가입 이벤트성 수임료 사은품 혜택 등을 무기로 소비자를 현혹하여 수임 결정을 강요하기도 합니다. 하지만 변호사법 및 법무사법상 현금지원 및 금품 제공 리베이트는 원천적으로 불법 소지가 있으며, 이러한 부적절한 광고 유혹에 끌려 자격이 미달되는 무자격 불법 브로커와 계약하는 경우 서류 조작 누적으로 인해 최종적으로 기각 및 형사 처벌까지 수반되는 극심한 2차 피해를 겪을 수 있음을 잊지 말아야 합니다.</p>
+                <p>따라서, 무조건 제일 싼 가격을 제시하는 싼곳에 의존하는 태도를 버려야 합니다. 대한변호사협회나 대한법무사협회에 정식 등록된 개인회생 도산 전문 대리인인지 명확하게 라이선스 취득 여부를 크로스체크해야 하며, 수임료 총액 비용의 투명한 공개와 분납 가능 여부, 사건 접수 후 즉각적인 금지명령 사건 번호 교부 프로세스가 구축된 탄탄한 전문 브랜드 법률 기관을 통해 명료하게 진행하는 것만이 최선이자 최저가 완수 가이드라인이 될 것입니다.</p>
+            </div>
+        </section>
+
+        <section id="자주묻는질문">
+            <h2>자주 묻는 질문</h2>
+            <dl class="faq-dl">
+                <dt tabindex="0" aria-expanded="false" class="faq-question">Q. 개인회생과 개인파산의 핵심적인 차이점은 무엇인가요?</dt>
+                <dd class="faq-answer">A. 개인회생은 일정한 직장 소득이나 영업 수입이 계속 발생하는 분이 매달 법정 생계비를 뺀 나머지를 변제금으로 성실히 갚아나가고 남은 잔액을 면책받는 제도입니다. 반면 개인파산은 고령, 질병, 기타 장해 등으로 인하여 아예 장래 소득 발생이 불가능한 수준일 때, 본인이 소유한 모든 재산을 현금화하여 채권자에게 균등 분배한 후 남은 채무 원금 전액을 단번에 전면 면책받는 완전 처분형 제도로 근본 요건이 다릅니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="faq-question">Q. 법률 대리인 수임료 비용은 언제 얼마를 지불해야 하나요?</dt>
+                <dd class="faq-answer">A. 수임료 비용의 업계 평균 단가는 사건의 복잡성과 채권자 총 수에 비례해 최저 100만 원에서 최고 250만 원 사이로 책정되는 경우가 일반적입니다. 한 번에 모든 액수를 일시불로 선납하는 분들은 적으며, 통상적으로 3개월에서 최대 6개월 단위의 무이자 카드 분납이나 법률 사무소 자체 할부 수임 약정을 적용하여 계약금 성격의 착수금을 소액 지불하고 분할 납부하는 방식으로 가계 자금 압박을 우회하시는 것이 일반적인 실무 가입 흐름입니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="faq-question">Q. 최근에 신규 개설한 마이너스통장 대출이나 카드론 빚이 많은데 신청해도 기각당하지 않나요?</dt>
+                <dd class="faq-answer">A. 최근에 발생한 채무 비중이 전체 부채 대비 70%를 넘거나 지나치게 단기간에 채무가 급증한 전황이 감지되면 법원은 사행성 자금 융통이나 고의적 재산 편취 목적이 아닌지 한결 엄중하게 소명 명령을 내립니다. 최근 채무가 과다할 경우 신청 자체가 절대 불가한 것은 아니나, 채무의 대부분을 생계비나 의료비, 혹은 이전 타 금융기관 채무 대환 대출 등으로 성실하게 사용하였음을 소상히 입증하는 명료한 변제경위서를 증명해 내야 최종 승인을 얻을 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="faq-question">Q. 보증인에게도 개인회생의 효력이 미치나요?</dt>
+                <dd class="faq-answer">A. 개인회생의 법원 금지명령 및 면책 효력은 오직 신청인 본인에게만 전속됩니다. 따라서 채무자가 회생 신청을 접수하여 변제금 상환 단계에 접어들더라도 주채무를 보증한 연대 보증인에게는 채권자들의 원금 청구와 추심 압박이 고스란히 이관됩니다. 보증인을 안전하게 보호하기 위해서는 보증인 본인도 신용회복위원회의 통합 사적 워크아웃을 동시에 가입하거나, 부양가족 여건이 된다면 같이 연계하여 채무를 정리하는 방안을 변호사나 법무사 상담을 통해 진단받아보아야 합니다.</dd>
+            </dl>
+        </section>
+
+        <section id="상담신청">
+            <h2>신청 자격 및 무료 수임료 견적 문의</h2>
+            <p>혼자서 무겁게 빚 독촉으로 가슴 앓이 하지 마시고 아래 상담 접수 양식에 간단한 신청 정보를 기입해 주시면, 확인 즉시 전국 각 지방 법원 실무 담당 부서의 검증된 전문가가 최적의 채무 탕감 절차 해결 방안과 정확한 변무 수임료 탕감 견적을 산출하여 무료 피드백 연락을 드립니다.</p>
+            <form id="contact-form" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label for="contact-name">신청자 성함 (필수)</label>
+                    <input type="text" id="contact-name" placeholder="성함을 기입해 주세요." required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">연락처 (필수)</label>
+                    <input type="tel" id="contact-phone" placeholder="예: 010-0000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-desc">보유 중인 총 채무 종류 및 발생 원인 요약 (선택)</label>
+                    <textarea id="contact-desc" rows="4" placeholder="예: 국민은행 무담보 대출 및 신한카드 연체 등 대략적인 주 소득원과 채무 내용을 남겨 주시면 가성비 높은 해법을 찾는 데 큰 보탬이 됩니다."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" aria-label="무료 상담 상담 접수">개인회생 자격 무료 정밀 컨설팅 접수하기</button>
+            </form>
+            <div id="contact-submit-msg"></div>
+        </section>
+
+        <section id="관련링크">
+            <h2>함께 많이 찾는 카테고리 및 신뢰성 있는 공식 기관 사이트</h2>
+            <p>개인회생신청 자격과 관련된 정보는 공식 정부 산하 기구 및 공신력 높은 사법부 웹 자원을 통해 재검증하고 현명하게 접근하시는 것을 추천합니다.</p>
+            <div class="related-links" aria-label="연관 신뢰 사이트 리스트">
+                <a href="https://recoverylawn.koreahankang.com" target="_blank" rel="noopener">신용회복 정보 전문 가이드센터 (Reliabledone)</a>
+                <a href="https://ecfs.scourt.go.kr" target="_blank" rel="noopener">대한민국 법원 전자소송 시스템</a>
+                <a href="https://slb.scourt.go.kr" target="_blank" rel="noopener">서울회생법원 공식 포털</a>
+                <a href="https://www.ccrs.or.kr" target="_blank" rel="noopener">신용회복위원회 공식 웹사이트</a>
+                <a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 (채무자 회생 및 파산에 관한 법률)</a>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ Accordion Function
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+
+                // Close other questions
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                    const dd = otherDt.nextElementSibling;
+                    if (dd && dd.tagName === 'DD') {
+                        dd.style.display = 'none';
+                    }
+                });
+
+                // Toggle currently clicked question
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    const dd = dt.nextElementSibling;
+                    if (dd && dd.tagName === 'DD') {
+                        dd.style.display = 'block';
+                    }
+                }
+            });
+
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+
+        // Interactive Rehabilitation Calculator logic
+        function calculateRehabilitation(event) {
+            event.preventDefault();
+            const income = parseFloat(document.getElementById('monthly-income').value) || 0;
+            const dependents = parseInt(document.getElementById('dependents-count').value) || 1;
+            const debt = parseFloat(document.getElementById('total-debt').value) || 0;
+            
+            // 2026 법정 가구원수별 최저생계비 기준 (중위소득의 60%)
+            const minLivingExpenses = {
+                1: 1337067,
+                2: 2209365,
+                3: 2822350,
+                4: 3437948,
+                5: 4052207,
+                6: 4664532
+            };
+            
+            const livingExpense = minLivingExpenses[dependents] || (4664532 + (dependents - 6) * 600000);
+            const resultBox = document.getElementById('calculator-result');
+            
+            if (income <= 0 || debt <= 0) {
+                resultBox.innerHTML = '<p class="error-msg" style="color:#ef4444; font-weight:700; margin-top:15px;">소득과 총 채무액을 정확한 금액으로 입력해 주세요.</p>';
+                return;
+            }
+            
+            if (income < livingExpense) {
+                resultBox.innerHTML = `
+                    <div class="result-card danger">
+                        <h4>기본 진단 분석: 최저생계비 요건 소명 검토 필요</h4>
+                        <p>입력하신 신청인의 월 소득(${income.toLocaleString()}원)이 선택하신 가구원 수별 법정 최저생계비(${livingExpense.toLocaleString()}원)보다 적습니다.</p>
+                        <p>개인회생은 매달 최저생계비 이상의 정기적인 세후 소득 증명이 필수적입니다. 부양가족의 범위를 실제 실정에 맞춰 단독(1인) 가구 요건으로 일부 줄여 생계비를 재산정하거나, 또는 채무 자체를 전액 감면 조율받는 개인파산 제도의 대상이 될 수 있으므로 정밀한 변호사 맞춤 면담이 권장됩니다.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const monthlyPayment = income - livingExpense;
+            const totalPaymentPeriod = 36; // 36 months is the standard rule
+            let totalPaid = monthlyPayment * totalPaymentPeriod;
+            
+            if (totalPaid > debt) {
+                totalPaid = debt;
+            }
+            
+            const forgivenDebt = debt - totalPaid;
+            const forgivenessRate = debt > 0 ? (forgivenDebt / debt) * 100 : 0;
+            
+            resultBox.innerHTML = `
+                <div class="result-card success">
+                    <h4>예상 월 변제금 및 최적의 채무 탕감 시뮬레이션</h4>
+                    <table style="width:100%; border-collapse: collapse; margin: 15px 0; background-color: white;">
+                        <tr style="border-bottom: 1px solid #cbd5e1;"><th style="padding:10px; text-align:left;">상세 산출 내역</th><th style="padding:10px; text-align:right;">가치 계산 금액</th></tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding:10px;">2026 기준 가구당 적용 최저생계비</td><td style="padding:10px; text-align:right;">${livingExpense.toLocaleString()} 원</td></tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding:10px; font-weight:700;">매월 법원 납부 예상 월 변제금</td><td style="padding:10px; text-align:right; font-weight:700; color:#1e3a8a;">${Math.round(monthlyPayment).toLocaleString()} 원</td></tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding:10px;">기준 법정 상환 기간</td><td style="padding:10px; text-align:right;">36 개월 (3년 기준)</td></tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding:10px;">총 예상 상환액 (기간 합산)</td><td style="padding:10px; text-align:right;">${Math.round(totalPaid).toLocaleString()} 원</td></tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding:10px; font-weight:700; color:#1d4ed8;">최종 예상 채무 면제액 (원금 탕감분)</td><td style="padding:10px; text-align:right; font-weight:700; color:#1d4ed8;">${Math.round(forgivenDebt).toLocaleString()} 원</td></tr>
+                        <tr><td style="padding:10px; font-weight:700;">예상 원금 탕감률</td><td style="padding:10px; text-align:right; font-weight:800;"><span class="highlight-rate">${forgivenessRate.toFixed(1)}%</span></td></tr>
+                    </table>
+                    <p class="disclaimer">위 결과는 채무자의 전반적인 재산 상태(부동산, 담보 유무, 예적금 가액 등)인 청산가치가 전혀 반영되지 않은 가장 이상적인 산출 결과입니다. 채무자 회생법상 총 변제 합산 금액은 청산가치보다 반드시 많아야 하므로 본인의 실재 재산 보유 수준에 따른 정량 계산을 위해 법률 대리인 전문 상담을 이용하시기 바랍니다.</p>
+                </div>
+            `;
+        }
+
+        // Qualification Self-Diagnosis System logic
+        function diagnoseQualification(event) {
+            event.preventDefault();
+            const q1 = document.getElementById('diag-q1').checked;
+            const q2 = document.getElementById('diag-q2').checked;
+            const q3 = document.getElementById('diag-q3').checked;
+            const q4 = document.getElementById('diag-q4').checked;
+            
+            const diagResult = document.getElementById('diagnosis-result');
+            let checkedCount = 0;
+            if (q1) checkedCount++;
+            if (q2) checkedCount++;
+            if (q3) checkedCount++;
+            if (q4) checkedCount++;
+            
+            if (checkedCount === 4) {
+                diagResult.innerHTML = `
+                    <div class="result-card success" style="margin-top:20px;">
+                        <h4>자가진단 확인: 신청 적합성 우수 단계</h4>
+                        <p>정기적 소득, 재산 초과 채무 구조, 법정 한도 채무 금액 준수, 재신청 기간 도래 등 핵심적인 필수 전제조건들을 훌륭하게 모두 달성하고 계십니다.</p>
+                        <p>매주 누적되는 연체 독촉 압류 위기에서 한시라도 일찍 벗어나실 수 있도록, 법원에 독촉 중지 명령(금지명령) 요청서와 신청 자격에 수반되는 세부 서류를 보충하기 위해 전문 도산 전문 변호사와 즉각적인 비용 상담을 연계하시는 것을 권장합니다.</p>
+                    </div>
+                `;
+            } else {
+                diagResult.innerHTML = `
+                    <div class="result-card danger" style="margin-top:20px;">
+                        <h4>자가진단 확인: 일부 세밀 조율 요구 단계</h4>
+                        <p>선택하신 조건 항목 중 비어 있는 부분이 확인됩니다. 개인회생을 정상적으로 완료하기 위해서는 소득 요건이 가구 생계비 이상이거나 총 채무 범위액이 명확한 상한선 안에 도달해야만 접수 기각 처분을 피할 수 있습니다.</p>
+                        <p>예외 사유를 입증하거나 연령 한정 혜택, 사업자 재정 구조 조정안 등 대안적 솔루션이 수임 가능하지를 법률 대리인을 통해 정교하게 논의해 주십시오.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Checklist status saver (increases dwell time)
+        function saveChecklistState(event) {
+            event.preventDefault();
+            const chk1 = document.getElementById('chk-doc1').checked;
+            const chk2 = document.getElementById('chk-doc2').checked;
+            const chk3 = document.getElementById('chk-doc3').checked;
+            const chk4 = document.getElementById('chk-doc4').checked;
+            const chk5 = document.getElementById('chk-doc5').checked;
+            const customQuery = document.getElementById('user-custom-query').value;
+
+            let checkedDocs = 0;
+            if (chk1) checkedDocs++;
+            if (chk2) checkedDocs++;
+            if (chk3) checkedDocs++;
+            if (chk4) checkedDocs++;
+            if (chk5) checkedDocs++;
+
+            const resultBox = document.getElementById('checklist-result');
+            resultBox.innerHTML = `
+                <div class="result-card success" style="margin-top: 20px;">
+                    <h4>공공서류 대비 진행률: ${(checkedDocs / 5 * 100).toFixed(0)}% 완료</h4>
+                    <p>기본 구비 서류 5개 항목 중 ${checkedDocs}개를 체크하셨습니다. 나머지 필요 문서와 남겨주신 메모 내역(${customQuery ? customQuery : '없음'})을 토대로 법원에 보정 권고 기각 없이 완벽히 접수될 수 있도록 최단기 일정을 계산하여 무료 서류 가이드 답변을 전달드리도록 하겠습니다.</p>
+                </div>
+            `;
+        }
+
+        // Contact Form processing simulation
+        function submitContactForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const phone = document.getElementById('contact-phone').value;
+            const msgBox = document.getElementById('contact-submit-msg');
+            
+            msgBox.innerHTML = `
+                <div class="result-card success" style="margin-top: 20px;">
+                    <h4>상담 요청 정상 접수 완료</h4>
+                    <p>감사합니다. ${name}님, 남겨주신 연락처(${phone})로 신속하고 엄정한 정보 보안 유지를 기본으로 한 비공개 1:1 개인회생신청 자격 비용 정밀 피드백을 전달하겠습니다. 조금만 대기해 주세요.</p>
+                </div>
+            `;
+        }
+    </script>
+  
